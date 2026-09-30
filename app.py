@@ -169,8 +169,10 @@ def style(fig, height=300, legend=True, r=4, t=6, b=None):
         paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
         font=dict(family=FONT, size=12, color=INK),
         legend_title_text="", showlegend=legend,
-        legend=dict(orientation="h", yanchor="bottom", y=1.0, x=0) if legend else None,
+        legend=dict(orientation="h", yanchor="bottom", y=1.0, x=0, font=dict(color=INK)) if legend else None,
     )
+    fig.update_xaxes(tickfont=dict(color=INK), title_font=dict(color=INK))
+    fig.update_yaxes(tickfont=dict(color=INK), title_font=dict(color=INK))
     return fig
 
 
@@ -377,7 +379,7 @@ with c1.container(border=True, key="r1_evo"):
     span = (daily["Date"].max() - daily["Date"].min()).days
     fig.update_xaxes(tickformat="%d", dtick=86400000 * (1 if span <= 12 else 3), showgrid=False, title=None)
     fig.update_yaxes(tickformat="~s", gridcolor="#eceff7", zeroline=False, title=None, rangemode="tozero")
-    st.plotly_chart(style(fig, None, legend=False), height="stretch", config=CFG)
+    st.plotly_chart(style(fig, None, legend=False), height="stretch", config=CFG, theme=None)
 
 with c2.container(border=True, key="r1_pie"):
     card_title("CA par Type Client")
@@ -389,7 +391,7 @@ with c2.container(border=True, key="r1_pie"):
         marker=dict(line=dict(color="#fff", width=2)),
         hovertemplate="%{label}<br><b>%{value:,.0f} DH</b> (%{percent})<extra></extra>")
     style(fig, None, legend=False, t=14, b=8).update_layout(showlegend=True, margin=dict(l=4, r=4, t=14, b=8), legend=dict(orientation="v", yanchor="middle", y=0.5, x=0.98))
-    st.plotly_chart(fig, height="stretch", config=CFG)
+    st.plotly_chart(fig, height="stretch", config=CFG, theme=None)
 
 with c3.container(border=True, key="r1_fam"):
     card_title("CA par Famille", "DH")
@@ -400,7 +402,7 @@ with c3.container(border=True, key="r1_fam"):
         hovertemplate="%{y}<br><b>%{x:,.0f} DH</b><extra></extra>"))
     fig.update_xaxes(tickformat="~s", gridcolor="#eceff7", title=None, range=[0, by_fam["Réalisation"].max() * 1.3])
     fig.update_yaxes(title=None)
-    st.plotly_chart(style(fig, None, legend=False, r=70), height="stretch", config=CFG)
+    st.plotly_chart(style(fig, None, legend=False, r=70), height="stretch", config=CFG, theme=None)
 
 # ----------------------------------------------------------------------------
 # Ligne 2 : famille x type / matrice enseignes
@@ -414,7 +416,7 @@ with d1.container(border=True, key="r2_ft"):
     fig.update_xaxes(title=None)
     fig.update_yaxes(tickformat="~s", gridcolor="#eceff7", title=None)
     fig.update_traces(hovertemplate="%{x}<br>%{fullData.name}: <b>%{y:,.0f} DH</b><extra></extra>")
-    st.plotly_chart(style(fig, None), height="stretch", config=CFG)
+    st.plotly_chart(style(fig, None), height="stretch", config=CFG, theme=None)
 
 with d2.container(border=True, key="r2_mat"):
     card_title("PERFORMANCE DES ENSEIGNES — CA, FAMILLES & PRODUITS", "clique sur ⊞ pour détailler")
