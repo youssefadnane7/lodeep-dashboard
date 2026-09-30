@@ -17,7 +17,7 @@ import streamlit as st
 st.set_page_config(page_title="Lodeep - Performance Commerciale", page_icon="📊",
                    layout="wide", initial_sidebar_state="expanded")
 
-ASSETS = Path(__file__).parent / "assets"
+ASSETS = Path(__file__).parent
 NAVY, BLUE, ORANGE, INK = "#1B2A9B", "#1E90FF", "#E8743B", "#1a1f3c"
 TYPE_COLORS = {"GMS": BLUE, "Distributeur": NAVY, "Grands Comptes": ORANGE}
 DEFAULT_SHEETS = ["GMS", "Distributeur", "Grands Comptes"]
